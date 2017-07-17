@@ -1,0 +1,54 @@
+<!--src 里面的各种目录都是靠archetype:样式名,如：archetype:webapp 这个命令自动生成的,在cmd中也可以这样用-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.testWeb.webDemo</groupId>
+  <artifactId>webDemo</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>webDemo Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.10</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.0.1</version>
+      <!--只在编译和测试时运行-->
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <!--<groupId>org.eclipse.jetty</groupId>-->
+        <!--<artifactId>jetty-maven-plugin</artifactId>-->
+        <!--<version>9.4.6.v20170531</version>-->
+        <!--注意测试时,不要开多个测试的窗口,否则会出现端口被占用的异常-->
+        <!--在打包成功后使用jetty:run来运行jetty服务-->
+        <!--jetty和tomcat都是容器-->
+        <executions>
+          <execution>
+            <!--指定阶段-->
+            <phase>package</phase>
+            <!--指定目标-->
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+        <!--使用tomcat的话,在浏览器输入localhost:8080的基础上还要加入/项目名
+        如：/webDemo-->
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+      </plugin>
+    </plugins>
+    <finalName>webDemo</finalName>
+  </build>
+</project>
